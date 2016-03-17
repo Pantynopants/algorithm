@@ -3,9 +3,12 @@
 ##suitable case: Kruskal算法适用于边稀疏的情形
 -  kruskal算法的思想是找最小边，且每次找到的边不会和以找出来的边形成环路，利用一个一维数组group存放当前顶点所在连通图标示（每条最小边，属于一个连通图），直到顶点都找完  
 
-##suitable case: Prim算法适用于边稠密的情形
+##suitable case: Prim算法适用于边稠密的情形，形成树结构
 -  任何时候都只有两个集合，一个是已处理顶点集合，一个是未处理  
+-  [example](http://www.cnblogs.com/Veegin/archive/2011/04/29/2032388.html)
 
+##suitable case: dijkstra可找到原点到其他所有点的最小值（同时为最小）不会形成树结构  
+-  可用邻接表替代邻接矩阵优化时间复杂度
 
 '''
 Dijkstra算法、A*算法、SPFA算法、Bellman-Ford算法和Floyd-Warshall算法，本文主要介绍其中的三种。
