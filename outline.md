@@ -1,4 +1,6 @@
--  最大流问题(maximum flow problem)一种组 合最优化问题.网络流理论研究的一个基本问题是 求网络中一个可行流f，使其流量V<f)达到最大  
+#可用的算法和思路  
+
+##floyd-warshall较简单，可作为初步模型。dijkstra是单源最短路
 
 ##suitable case: Kruskal算法适用于边稀疏的情形
 -  kruskal算法的思想是找最小边，且每次找到的边不会和以找出来的边形成环路，利用一个一维数组group存放当前顶点所在连通图标示（每条最小边，属于一个连通图），直到顶点都找完  
@@ -6,6 +8,14 @@
 ##suitable case: Prim算法适用于边稠密的情形，形成树结构
 -  任何时候都只有两个集合，一个是已处理顶点集合，一个是未处理  
 -  [example](http://www.cnblogs.com/Veegin/archive/2011/04/29/2032388.html)
+
+##bellman-ford队列优化，可与dijkstra比较选择其一
+
+##KSP算法，遗传算法，动态规划等模型可作优化
+
+##A * 算法是DFS的父集[教程](http://blog.csdn.net/feixiaoxing/article/details/6982932/)
+
+###[计网相关](http://www.mat.uc.pt/~eqvm/links/cursos.html)
 
 ##suitable case: dijkstra可找到原点到其他所有点的最小值（同时为最小）不会形成树结构  
 -  可用邻接表替代邻接矩阵优化时间复杂度
