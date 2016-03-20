@@ -15,13 +15,14 @@
 
 ##A * 算法是DFS的父集[教程](http://blog.csdn.net/feixiaoxing/article/details/6982932/)
 
-###[计网相关](http://www.mat.uc.pt/~eqvm/links/cursos.html)
+###链接：[计网相关](http://www.mat.uc.pt/~eqvm/links/cursos.html)
 
 ##suitable case: dijkstra可找到原点到其他所有点的最小值（同时为最小）不会形成树结构  
 -  可用邻接表替代邻接矩阵优化时间复杂度
 
-'''
-Dijkstra算法、A*算法、SPFA算法、Bellman-Ford算法和Floyd-Warshall算法，本文主要介绍其中的三种。
+'''  
+
+Dijkstra算法、A * 算法、SPFA算法、Bellman-Ford算法和Floyd-Warshall算法，本文主要介绍其中的三种。
 最短路径问题是图论研究中的一个经典算法问题，旨在寻找图（由结点和路径组成的）中两结点之间的最短路
 径。
 
@@ -55,11 +56,11 @@ Di,j ← Di,k + Dk,j;
 
 
 Dijkstra
-求单源、无负权的最短路。时效性较好，时间复杂度为O（V*V+E）,可以用优先队列进行优化，优化后时间复杂
-度变为0（v*lgn）。
-源点可达的话，O（V*lgV+E*lgV）=>O（E*lgV）。
-当是稀疏图的情况时，此时E=V*V/lgV，所以算法的时间复杂度可为O（V^2） 。可以用优先队列进行优化，优
-化后时间复杂度变为0（v*lgn）。
+求单源、无负权的最短路。时效性较好，时间复杂度为O（V * V + E）,可以用优先队列进行优化，优化后时间复杂
+度变为0（v * lgn）。
+源点可达的话，O（V * lgV+E * lgV）=>O（E * lgV）。
+当是稀疏图的情况时，此时E=V * V/lgV，所以算法的时间复杂度可为O（V^2） 。可以用优先队列进行优化，优
+化后时间复杂度变为0（ v * lgn）。
 Bellman-Ford
 求单源最短路，可以判断有无负权回路（若有，则不存在最短路），时效性较好，时间复杂度O（VE）。
 Bellman-Ford算法是求解单源最短路径问题的一种算法。
@@ -82,5 +83,6 @@ O(VE)。
 SPFA算法在负边权图上可以完全取代Bellman-ford算法，另外在稀疏图中也表现良好。但是在非负边权图中，
 
 
-为了避免最坏情况的出现，通常使用效率更加稳定的Dijkstra算法，以及它的使用堆优化的版本。通常的SPFA
+为了避免最坏情况的出现，通常使用效率更加稳定的Dijkstra算法，以及它的使用堆优化的版本。通常的SPFA  
+
 '''
