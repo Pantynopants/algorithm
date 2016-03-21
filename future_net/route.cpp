@@ -66,6 +66,9 @@ int Dijkstra(int n, int v, int *dist, int *prev, AtoB c[maxnum][maxnum])
     return dist[n];
 }
 
+
+
+
 /*  u == end point
 *	v == start point
 */
@@ -90,6 +93,9 @@ void searchPath(int *prev,int v, int u)
             cout << que[i] << endl;
 }
 
+
+
+
 void search_route(char *topo[5000], int edge_num, char *demand)
 {
     //unsigned short result[] = {2, 6, 4};
@@ -102,14 +108,11 @@ void search_route(char *topo[5000], int edge_num, char *demand)
     int id;
     int dist;
 
-    /* for demand */
-
-    int SourceID;
-    int DestinationID;
-    int IncludingSet[50];
-
+    
     /*
     *init the matrix
+    *
+    *
 	*/
 
     //TODO
@@ -179,15 +182,22 @@ void search_route(char *topo[5000], int edge_num, char *demand)
  
 	printf("\n\n\n\n");
 
+/*
+*	get the necessary point which is in demand.csv
+*
+*/
+	
+	/* for demand */
 
-	int len = strlen(demand);
-	printf("length is :%d\t",len);
+    int SourceID;
+    int DestinationID;
+    int IncludingSet[50];
+	
+	//int len = strlen(demand);
+	//printf("length is :%d\t",len);
 	char* token = strtok( demand, ",|");
 	int i = 0;
 	int IncludingSetLength = 0;
-
-	
-
 
     while( token != NULL )
     {
@@ -211,9 +221,11 @@ void search_route(char *topo[5000], int edge_num, char *demand)
         token = strtok( NULL, ",|");
         i++;
     }
-
+    printf( "start :%d ", SourceID );
+    printf( "end :%d ", DestinationID );
     for (int i = 0; i < IncludingSetLength; ++i)
     {
+        
     	printf( "access :%d ", IncludingSet[i] );
 
     }
@@ -249,13 +261,23 @@ void search_route(char *topo[5000], int edge_num, char *demand)
         distance[i] = maxint;
 
     int case0;
-    /* Dijkstra(int endPointID, int startPointID2, int distance[], int prevpoint[], AtoB distM[][]);*/
-    case0 = Dijkstra(11, 2, distance, prevpoint, distM);
+
+/* Dijkstra(int SourceID, int DestinationID, int distance[], int prevpoint[], AtoB distM[][]);*/
+    // you can set startpoint and endpoint as you want
+    case0 = Dijkstra(DestinationID, SourceID, distance, prevpoint, distM);
  
     // 最短路径长度
-    cout << "源点到最后一个顶点的最短路径长度: " << case0 << endl;
+    cout << "startPoint到endPoint的最短路径长度: " << case0 << endl;
 
-
+	cout << "tartPoint到endPoint的的路径: " << endl;
+	searchPath(prevpoint, SourceID, DestinationID);
+//TODO 
+// 1 存储方式由邻接矩阵转化为邻接表
+// 2 实现pdf中的算法
+// 3 注意输出路径结果为边的编号而不是顶点的编号
+//
+//
+//
 /* wirte to file */
     for (int i = 0; i < 3; i++)
         record_result(*topo[i]);
