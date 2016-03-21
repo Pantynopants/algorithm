@@ -53,6 +53,7 @@ public class Kruskal {
             for(int i = 0; i < num; i++) {
                 for(int j = i+1; j < num; j++) {
                     if(arcs[i][j] > 0 && arcs[i][j] < min){
+                        //the point which have been search are put in one group
                         //如果group相同，则表示处理过，不相同或都为0都表示没处理过
                         if (group[i] != group[j] || (group[i] == 0 && group[j] == 0)) {
                             min = arcs[i][j];
