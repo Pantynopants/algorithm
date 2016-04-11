@@ -11,7 +11,7 @@
 using namespace std;
 
 
-const int maxnum = 100;
+const int maxnum = 200;
 const int maxint = 999999;
 const int inf = 999999;
 

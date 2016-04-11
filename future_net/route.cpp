@@ -10,7 +10,7 @@
 //TODO 
 // IMPORTTANT!!!!
 // 0 function searchPath(...) return a wrong value , such as 0to19 ,
-// we can get it bug it print "no path"
+// we can get it but it print "no path"
 //
 // 1 存储方式由邻接矩阵转化为邻接表
 // 2 实现pdf中的算法
@@ -23,8 +23,8 @@
 
 
 
-
-
+char *result_path[5000];
+int path_num = 0;
 
 /* n == end point
 *	v==start point
@@ -92,7 +92,8 @@ void searchPath(int *prev,int v, int u)
     tot++;
 
 
-    if (prev[u] == NULL)
+    //if (prev[u] == NULL)
+    if (prev[u] == 0)
     {
         printf("no path from %d to %d \n",v,u );
         return;
@@ -104,8 +105,8 @@ void searchPath(int *prev,int v, int u)
     {
         que[tot] = tmp;
         tot++;
-
-        if (prev[tmp] == NULL)
+// if (prev[tmp] == NULL)
+        if (prev[tmp] == 0)
         {
             printf("no path from %d to %d \n",v,u );
             return;
@@ -115,10 +116,13 @@ void searchPath(int *prev,int v, int u)
     }
     que[tot] = v;
     for(int i=tot; i>=1; --i){
-        if(i != 1)
+        if(i != 1){
             cout << que[i] << " -> ";
-        else
+            
+        }
+        else{
             cout << que[i] << endl;
+        }
     }
 }
 
@@ -133,7 +137,7 @@ int midPath(int IncludingSetLength, int IncludingSet[50], AtoB c[maxnum][maxnum]
     int distance[maxnum];     // 表示当前点到源点的最短路径长度
     int prevpoint[maxnum];     // 记录当前点的前一个结点
 
-    for(int i=0; i<=200; ++i)
+    for(int i=0; i<=maxnum; ++i)
         distance[i] = maxint;
 
     for (int i = 0; i+1 < IncludingSetLength; ++i)
@@ -175,7 +179,7 @@ int midPath(int IncludingSetLength, int IncludingSet[50], AtoB c[maxnum][maxnum]
 }
 
 
-
+//the default function given(entrance)
 void search_route(char *topo[5000], int edge_num, char *demand)
 {
     //unsigned short result[] = {2, 6, 4};
@@ -196,9 +200,9 @@ void search_route(char *topo[5000], int edge_num, char *demand)
 
     //TODO use dist[] not matrix to change 600
 
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < maxnum; ++i)
 	{
-		for (int j = 0; j < 100; ++j)
+		for (int j = 0; j < maxnum; ++j)
 		{
 			if (i == j)
 			{
@@ -270,7 +274,7 @@ void search_route(char *topo[5000], int edge_num, char *demand)
 
     int SourceID;
     int DestinationID;
-    int IncludingSet[50];
+    int IncludingSet[5000];
 	
 	//int len = strlen(demand);
 	//printf("length is :%d\t",len);
@@ -322,18 +326,18 @@ void search_route(char *topo[5000], int edge_num, char *demand)
     int tempDist = 0;
 
     int firstdistance[maxnum];     // 表示当前点到源点的最短路径长度
-    int firstprevpoint[maxnum];     // 记录当前点的前一个结点
+    int firstprevpoint[maxnum] = {0};     // 记录当前点的前一个结点
 
     for(int i=0; i<=edge_num/2; ++i)
         firstdistance[i] = maxint;
 
     int lastdistance[maxnum];     // 表示当前点到源点的最短路径长度
-    int lastprevpoint[maxnum];     // 记录当前点的前一个结点
+    int lastprevpoint[maxnum] = {0};     // 记录当前点的前一个结点
 
     for(int i=0; i<=edge_num/2; ++i)
         lastdistance[i] = maxint;
 
-    int copyIncludingSet[50];
+    int copyIncludingSet[maxnum];
 
     do 
     {  
@@ -376,10 +380,10 @@ void search_route(char *topo[5000], int edge_num, char *demand)
 
     midDist = midPath(IncludingSetLength, IncludingSet, distM);
 
-    firstDist = Dijkstra(IncludingSet[0] , SourceID, firstdistance, firstprevpoint, distM);
+    //firstDist = Dijkstra(IncludingSet[0] , SourceID, firstdistance, firstprevpoint, distM);
     searchPath(firstprevpoint, SourceID, IncludingSet[0]);
 
-    lastDist = Dijkstra(DestinationID, IncludingSet[IncludingSetLength], lastdistance, lastprevpoint, distM);
+    //lastDist = Dijkstra(DestinationID, IncludingSet[IncludingSetLength], lastdistance, lastprevpoint, distM);
     searchPath(lastprevpoint, IncludingSet[IncludingSetLength], DestinationID);
 
     printf("\n\n\n\n\n");
@@ -405,6 +409,6 @@ void search_route(char *topo[5000], int edge_num, char *demand)
 	// searchPath(prevpoint, SourceID, DestinationID);
 
 /* wirte to file */
-    for (int i = 0; i < 3; i++)
-        record_result(*topo[i]);
+    // for (int i = 0; i < path_num; i++)
+    //     record_result(*result_path[i]);
 }
